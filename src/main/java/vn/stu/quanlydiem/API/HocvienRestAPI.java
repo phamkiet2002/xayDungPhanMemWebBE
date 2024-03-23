@@ -2,14 +2,14 @@ package vn.stu.quanlydiem.API;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import vn.stu.quanlydiem.Model.Diem;
 import vn.stu.quanlydiem.Model.SinhVien;
 import vn.stu.quanlydiem.Service.Hocvien.HocvienService;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin("*")
 @RestController
@@ -21,7 +21,33 @@ public class HocvienRestAPI {
 
 
     @GetMapping
-    public List<SinhVien> showHocVien(){
-        return hocvienService.findAll();
+    public ResponseEntity<List<SinhVien>> showHocVien(){
+        return ResponseEntity.ok().body(hocvienService.findAll());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<SinhVien> show1HocVien(@PathVariable Integer id){
+        Optional<SinhVien> sinhvien=hocvienService.findById(id);
+        if (sinhvien.isPresent()){
+            return ResponseEntity.ok(sinhvien.get());
+        }
+        else {
+            throw new RuntimeException("Không tim thấy");
+        }
+    }
+    @PostMapping
+    public ResponseEntity<SinhVien> createHocVien(@RequestBody SinhVien sv){
+        SinhVien sinhVien=hocvienService.save(sv);
+        return ResponseEntity.ok(sinhVien);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteHocVienById(@PathVariable Integer id){
+        hocvienService.deleteById(id);
+        return ResponseEntity.ok().body("Da xoa thanh cong");
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<SinhVien> updateHocVienById(@PathVariable Integer id,@RequestBody SinhVien sv){
+        SinhVien sinhVien=hocvienService.updateSv(id,sv);
+        return ResponseEntity.ok(sinhVien);
     }
 }
