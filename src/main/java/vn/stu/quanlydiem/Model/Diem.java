@@ -12,6 +12,7 @@ import lombok.*;
 @Table(name = "diem")
 public class Diem {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
     @ManyToOne
