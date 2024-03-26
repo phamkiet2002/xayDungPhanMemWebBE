@@ -4,13 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import vn.stu.quanlydiem.Model.Diem;
 import vn.stu.quanlydiem.Model.SinhVien;
 import vn.stu.quanlydiem.Service.Hocvien.HocvienService;
 
 import java.util.List;
 import java.util.Optional;
-
 @CrossOrigin("*")
 @RestController
 @RequiredArgsConstructor
@@ -18,13 +16,10 @@ import java.util.Optional;
 public class HocvienRestAPI {
     @Autowired
     private final HocvienService hocvienService;
-
-
     @GetMapping
     public ResponseEntity<List<SinhVien>> showHocVien(){
         return ResponseEntity.ok().body(hocvienService.findAll());
     }
-
     @GetMapping("/{id}")
     public ResponseEntity<SinhVien> show1HocVien(@PathVariable Integer id){
         Optional<SinhVien> sinhvien=hocvienService.findById(id);
