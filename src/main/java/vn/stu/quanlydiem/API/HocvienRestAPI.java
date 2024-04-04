@@ -4,13 +4,19 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+<<<<<<< HEAD
 import vn.stu.quanlydiem.Model.Diem;
+=======
+>>>>>>> cab6bac70e308f06d501cc15a58ebacd0c3f9cef
 import vn.stu.quanlydiem.Model.SinhVien;
 import vn.stu.quanlydiem.Service.Hocvien.HocvienService;
 
 import java.util.List;
 import java.util.Optional;
+<<<<<<< HEAD
 
+=======
+>>>>>>> cab6bac70e308f06d501cc15a58ebacd0c3f9cef
 @CrossOrigin("*")
 @RestController
 @RequiredArgsConstructor
@@ -18,13 +24,14 @@ import java.util.Optional;
 public class HocvienRestAPI {
     @Autowired
     private final HocvienService hocvienService;
-
-
     @GetMapping
     public ResponseEntity<List<SinhVien>> showHocVien(){
         return ResponseEntity.ok().body(hocvienService.findAll());
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> cab6bac70e308f06d501cc15a58ebacd0c3f9cef
     @GetMapping("/{id}")
     public ResponseEntity<SinhVien> show1HocVien(@PathVariable Integer id){
         Optional<SinhVien> sinhvien=hocvienService.findById(id);
