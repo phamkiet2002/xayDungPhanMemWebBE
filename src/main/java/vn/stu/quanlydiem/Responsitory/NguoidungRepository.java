@@ -5,4 +5,5 @@ import org.springframework.stereotype.Repository;
 import vn.stu.quanlydiem.Model.Nguoidung;
 @Repository
 public interface NguoidungRepository extends JpaRepository<Nguoidung, Integer> {
+    Nguoidung findByTenDangNhap(String username);
 }
