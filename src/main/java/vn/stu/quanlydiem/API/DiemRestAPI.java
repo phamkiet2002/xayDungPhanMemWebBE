@@ -38,7 +38,6 @@ public class DiemRestAPI {
     public ResponseEntity<Diem> createDiem(@RequestBody DiemDTO diem){
         Diem diem1=diemService.save(diem);
         return ResponseEntity.ok(diem1);
-
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteDiemById(@PathVariable Long id){
