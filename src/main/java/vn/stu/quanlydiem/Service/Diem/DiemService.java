@@ -3,6 +3,7 @@ package vn.stu.quanlydiem.Service.Diem;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import vn.stu.quanlydiem.Model.Diem;
+import vn.stu.quanlydiem.dto.DiemDTO;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,7 +16,11 @@ public interface DiemService {
 
     void deleteById(Long aLong);
 
-    Diem save(Diem entity);
 
-    Diem updateDiem(Long id, Diem diem);
+
+    Diem save(DiemDTO diemDTO);
+
+    Diem updateDiem(Long id, Float diem);
+
+    Optional<Diem> FindBySVAndMH(Integer idSV,Integer idMH);
 }

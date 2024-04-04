@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vn.stu.quanlydiem.Model.Diem;
 import vn.stu.quanlydiem.Service.Diem.DiemService;
+import vn.stu.quanlydiem.dto.DiemDTO;
 
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class DiemRestAPI {
    private DiemService diemService;
 
     @GetMapping
-    public List<Diem> showHocVien(){
+    public List<Diem> showDiem(){
         return diemService.findAll();
     }
 
@@ -34,17 +35,22 @@ public class DiemRestAPI {
     }
 
     @PostMapping
-    public ResponseEntity<Diem> createDiem(@RequestBody Diem diem){
+    public ResponseEntity<Diem> createDiem(@RequestBody DiemDTO diem){
         Diem diem1=diemService.save(diem);
         return ResponseEntity.ok(diem1);
+
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteDiemById(@PathVariable Long id){
-        diemService.deleteById(id);
-        return ResponseEntity.ok("Xoa thanh cong");
+        try {
+            diemService.deleteById(id);
+            return ResponseEntity.ok("Xoa thanh cong");
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body("Loi");
+        }
     }
     @PutMapping("/{id}")
-    public ResponseEntity<Diem> updateDiemById(@PathVariable Long id, @RequestBody Diem diem){
+    public ResponseEntity<Diem> updateDiemById(@PathVariable Long id, @RequestParam Float diem){
         Diem diem1=diemService.updateDiem(id,diem);
         return ResponseEntity.ok(diem1);
     }
