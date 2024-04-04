@@ -28,10 +28,7 @@ public class HocvienRestAPI {
     public ResponseEntity<List<SinhVien>> showHocVien(){
         return ResponseEntity.ok().body(hocvienService.findAll());
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> cab6bac70e308f06d501cc15a58ebacd0c3f9cef
     @GetMapping("/{id}")
     public ResponseEntity<SinhVien> show1HocVien(@PathVariable Integer id){
         Optional<SinhVien> sinhvien=hocvienService.findById(id);
